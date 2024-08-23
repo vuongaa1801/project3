@@ -50,7 +50,7 @@ listStudent.map((value,index) => {
             <td>${value.address}</td>
             <td>
                 <button onclick ="editStudent(${index})"> Edit</button>
-                <button> Delete</button>
+                <button onclick ="deleteStudent(${index})"> Delete</button>
             </td>
         </tr>`
 })
@@ -80,4 +80,13 @@ function changeStudent(){
 
     renderStudent()
     resetInput()
+}
+
+function deleteStudent(){
+    let listStudent = localStorage.getItem("list-student") ? JSON.parse(localStorage.getItem("list-student")) : []
+    if(confirm("ban chac chan xoa chu?")){
+        listStudent.splice(index,1)
+    }
+    localStorage.setItem("list-student",JSON.stringify(listStudent))
+    renderStudent()
 }
